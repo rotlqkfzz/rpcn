@@ -34,10 +34,14 @@
             width: 80%;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
+            display: flex;
+            justify-content: space-between;
         }
-        .search-bar, .recommendations {
-            margin-bottom: 30px;
+        .main-content {
+            width: 70%;
+        }
+        .sidebar {
+            width: 25%;
         }
         .search-bar {
             display: flex;
@@ -46,7 +50,7 @@
             margin-bottom: 20px;
         }
         .search-bar input[type="text"] {
-            width: 200px; /* Adjust the width as needed */
+            width: 200px;
             padding: 10px;
             margin-right: 10px;
         }
@@ -58,15 +62,12 @@
             cursor: pointer;
         }
         .login-form {
-            width: 300px;
+            width: 100%;
             background: #f9f9f9;
             padding: 15px;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            top: 100px; /* Adjust the top value as needed */
-            right: 0;
-            margin-bottom: 20px; /* Add margin-bottom for spacing */
+            margin-bottom: 20px;
         }
         .login-form input[type="text"], .login-form input[type="password"] {
             width: calc(100% - 22px);
@@ -81,25 +82,13 @@
             border: none;
             cursor: pointer;
         }
-        .recommendations img {
-            width: 100px;
-            height: 100px;
-            margin-right: 20px;
-        }
-        .recommendations div {
-            display: inline-block;
-            vertical-align: top;
-            margin-right: 20px;
-        }
         .search-terms {
-            width: 300px;
+            width: 100%;
             background: #f9f9f9;
             padding: 15px;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            top: 320px; /* Adjust the top value to be just below the login form with more spacing */
-            right: 0;
+            margin-bottom: 20px;
         }
         .search-terms ul {
             list-style: none;
@@ -107,6 +96,48 @@
         }
         .search-terms li {
             margin: 5px 0;
+        }
+        .recommendations {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .recommendations h2 {
+            margin-bottom: 20px;
+        }
+        .game-list {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+        .game {
+            width: 100%;
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+            height: 500px; /* Adjust the height as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .game img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .game-name {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -122,44 +153,56 @@
         <a href="#">커뮤니티</a>
     </nav>
     <div class="container">
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="게임 이름" onkeyup="updateSearchResults()">
-            <button onclick="updateSearchResults()">통합검색</button>
-        </div>
-        <div class="login-form">
-            <input type="text" placeholder="아이디">
-            <input type="password" placeholder="비밀번호">
-            <button>로그인</button>
-            <br>
-            <label><input type="checkbox"> 로그인 상태 유지</label>
-            <br>
-            <a href="#">회원가입</a> | <a href="#">아이디/비번 찾기</a>
-        </div>
-        <div class="search-terms">
-            <h2>실시간 검색어</h2>
-            <ul id="searchResults">
-                <!-- 실시간 검색어가 여기에 표시됩니다 -->
-            </ul>
-        </div>
-        <div class="recommendations">
-            <h2>오늘의 게임 추천</h2>
-            <div>
-                <img src="game1.jpg" alt="게임1">
-                <p>게임 이름<br>☆☆☆☆☆<br>가격</p>
+        <div class="main-content">
+            <div class="recommendations">
+                <h2>오늘의 게임 추천</h2>
+                <div class="game-list">
+                    <div class="game-wrapper">
+                        <div class="game">
+                            <img src="game1.jpg" alt="게임 추천 이미지 1">
+                        </div>
+                        <div class="game-name">게임 이름</div>
+                    </div>
+                    <div class="game-wrapper">
+                        <div class="game">
+                            <img src="game2.jpg" alt="게임 추천 이미지 2">
+                        </div>
+                        <div class="game-name">게임 이름</div>
+                    </div>
+                    <div class="game-wrapper">
+                        <div class="game">
+                            <img src="game3.jpg" alt="게임 추천 이미지 3">
+                        </div>
+                        <div class="game-name">게임 이름</div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <img src="game2.jpg" alt="게임2">
-                <p>게임 이름<br>☆☆☆☆☆<br>가격</p>
+        </div>
+        <div class="sidebar">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="게임 이름" onkeyup="updateSearchResults()">
+                <button onclick="updateSearchResults()">통합검색</button>
             </div>
-            <div>
-                <img src="game3.jpg" alt="게임3">
-                <p>게임 이름<br>☆☆☆☆☆<br>가격</p>
+            <div class="login-form">
+                <input type="text" placeholder="아이디">
+                <input type="password" placeholder="비밀번호">
+                <button>로그인</button>
+                <br>
+                <label><input type="checkbox"> 로그인 상태 유지</label>
+                <br>
+                <a href="#">회원가입</a> | <a href="#">아이디/비번 찾기</a>
+            </div>
+            <div class="search-terms">
+                <h2>실시간 검색어</h2>
+                <ul id="searchResults">
+                    <!-- 실시간 검색어가 여기에 표시됩니다 -->
+                </ul>
             </div>
         </div>
     </div>
     <script>
         const keywords = [
-            "리그 오브 레전드",
+        "리그 오브 레전드",
             "오버워치2",
             "마인크래프트",
             "포트나이트",
@@ -168,7 +211,7 @@
             "Apex레전드",
             "배틀그라운드",
             "로블록스",
-            "FIFA", 
+            "FIFA",
         ];
 
         function updateSearchResults() {
