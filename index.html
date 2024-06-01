@@ -124,7 +124,7 @@
     <div class="container">
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="게임 이름" onkeyup="updateSearchResults()">
-            <button>통합검색</button>
+            <button onclick="updateSearchResults()">통합검색</button>
         </div>
         <div class="login-form">
             <input type="text" placeholder="아이디">
@@ -159,16 +159,16 @@
     </div>
     <script>
         const keywords = [
-            "League of Legends",
-            "Overwatch",
-            "Minecraft",
-            "Fortnite",
-            "Valorant",
-            "Genshin Impact",
-            "Apex Legends",
-            "PUBG",
-            "Roblox",
-            "FIFA"
+            "리그 오브 레전드",
+            "오버워치2",
+            "마인크래프트",
+            "포트나이트",
+            "발로란트",
+            "원신",
+            "Apex레전드",
+            "배틀그라운드",
+            "로블록스",
+            "FIFA", 
         ];
 
         function updateSearchResults() {
@@ -179,7 +179,7 @@
             resultsContainer.innerHTML = '';
 
             // Filter keywords based on input
-            const filteredKeywords = keywords.filter(keyword => keyword.toLowerCase().includes(input));
+            const filteredKeywords = input ? keywords.filter(keyword => keyword.toLowerCase().includes(input)) : [];
 
             // Display filtered keywords
             filteredKeywords.forEach((keyword, index) => {
@@ -188,6 +188,16 @@
                 resultsContainer.appendChild(keywordElement);
             });
         }
+
+        // Display initial keywords
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsContainer = document.getElementById('searchResults');
+            keywords.forEach((keyword, index) => {
+                const keywordElement = document.createElement('li');
+                keywordElement.textContent = `${index + 1}. ${keyword}`;
+                resultsContainer.appendChild(keywordElement);
+            });
+        });
     </script>
 </body>
 </html>
