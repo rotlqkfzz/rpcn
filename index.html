@@ -50,16 +50,17 @@
             margin-bottom: 20px;
         }
         .search-bar input[type="text"] {
-            width: 200px;
+            width: calc(100% - 120px); /* Adjusted width to fit button */
             padding: 10px;
-            margin-right: 10px;
         }
         .search-bar button {
-            padding: 10px 20px;
+            padding: 10px;
             background: #333;
             color: #fff;
             border: none;
             cursor: pointer;
+            width: 100px; /* Adjust the width as needed */
+            margin-left: 10px;
         }
         .login-form {
             width: 100%;
@@ -180,8 +181,8 @@
         </div>
         <div class="sidebar">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="게임 이름" onkeyup="updateSearchResults()">
-                <button onclick="updateSearchResults()">통합검색</button>
+                <input type="text" id="searchInput" placeholder="게임 이름">
+                <button>통합검색</button>
             </div>
             <div class="login-form">
                 <input type="text" placeholder="아이디">
@@ -212,35 +213,20 @@
             "배틀그라운드",
             "로블록스",
             "FIFA",
+
         ];
 
-        function updateSearchResults() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
+        function displaySearchResults() {
             const resultsContainer = document.getElementById('searchResults');
-
-            // Clear previous results
             resultsContainer.innerHTML = '';
-
-            // Filter keywords based on input
-            const filteredKeywords = input ? keywords.filter(keyword => keyword.toLowerCase().includes(input)) : [];
-
-            // Display filtered keywords
-            filteredKeywords.forEach((keyword, index) => {
+            keywords.forEach((keyword, index) => {
                 const keywordElement = document.createElement('li');
                 keywordElement.textContent = `${index + 1}. ${keyword}`;
                 resultsContainer.appendChild(keywordElement);
             });
         }
 
-        // Display initial keywords
-        document.addEventListener('DOMContentLoaded', () => {
-            const resultsContainer = document.getElementById('searchResults');
-            keywords.forEach((keyword, index) => {
-                const keywordElement = document.createElement('li');
-                keywordElement.textContent = `${index + 1}. ${keyword}`;
-                resultsContainer.appendChild(keywordElement);
-            });
-        });
+        document.addEventListener('DOMContentLoaded', displaySearchResults);
     </script>
 </body>
 </html>
