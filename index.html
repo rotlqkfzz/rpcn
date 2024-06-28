@@ -15,6 +15,7 @@
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            cursor: pointer;
         }
         nav {
             display: flex;
@@ -37,7 +38,7 @@
             display: flex;
             justify-content: space-between;
         }
-        .main-content {
+        .main-content, .game-ranking, .free-games, .paid-games, .game-details {
             width: 70%;
         }
         .sidebar {
@@ -50,7 +51,7 @@
             margin-bottom: 20px;
         }
         .search-bar input[type="text"] {
-            width: calc(100% - 120px); /* Adjusted width to fit button */
+            width: calc(100% - 120px);
             padding: 10px;
         }
         .search-bar button {
@@ -59,7 +60,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            width: 100px; /* Adjust the width as needed */
+            width: 100px;
             margin-left: 10px;
         }
         .login-form {
@@ -125,7 +126,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             box-sizing: border-box;
-            height: 500px; /* Adjust the height as needed */
+            height: 150px; /* Adjusted the height */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -140,44 +141,196 @@
             font-weight: bold;
             text-align: center;
         }
+        .free-games .categories, .paid-games .categories {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+        }
+        .free-games .categories div, .paid-games .categories div {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: center;
+        }
+        .free-games .categories div:hover, .paid-games .categories div:hover {
+            background: #e9e9e9;
+        }
+        .free-games .game-list, .paid-games .game-list {
+            display: flex;
+            flex-wrap: wrap;
+            width: 70%;
+            justify-content: space-between;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        .free-games-container, .paid-games-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .ranking-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Smaller game blocks for free and paid games */
+        .free-games .game-wrapper, .paid-games .game-wrapper {
+            width: 30%;
+        }
+        .free-games .game, .paid-games .game {
+            height: 150px;
+        }
+        .free-games .game img, .paid-games .game img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        /* Adjust the flex properties to display 3 items per row */
+        .free-games .game-list, .paid-games .game-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .free-games .game-wrapper, .paid-games .game-wrapper {
+            width: calc(33.333% - 10px);
+            margin-bottom: 10px;
+        }
+        .game-details {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .game-details img {
+            width: 300px;
+            height: 300px;
+        }
+        .game-description {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header onclick="showPage('main')">
         <h1>게추</h1>
     </header>
     <nav>
-        <a href="#">무료게임</a>
-        <a href="#">유료게임</a>
-        <a href="#">게임순위</a>
-        <a href="#">고객지원</a>
-        <a href="#">커뮤니티</a>
+        <a href="#" onclick="showPage('free-games')">무료게임</a>
+        <a href="#" onclick="showPage('paid-games')">유료게임</a>
+        <a href="#" onclick="showPage('ranking')">게임순위</a>
+       
     </nav>
     <div class="container">
-        <div class="main-content">
+        <div id="main" class="main-content">
             <div class="recommendations">
                 <h2>오늘의 게임 추천</h2>
                 <div class="game-list">
                     <div class="game-wrapper">
-                        <div class="game">
+                        <div class="game" onclick="showGameDetails('game1.jpg', '게임 이름', '게임 설명')">
                             <img src="game1.jpg" alt="게임 추천 이미지 1">
                         </div>
-                        <div class="game-name">게임 이름</div>
+                        <div class="game-name" onclick="showGameDetails('game1.jpg', '게임 이름', '게임 설명')">게임 이름</div>
                     </div>
                     <div class="game-wrapper">
-                        <div class="game">
+                        <div class="game" onclick="showGameDetails('game2.jpg', '게임 이름', '게임 설명')">
                             <img src="game2.jpg" alt="게임 추천 이미지 2">
                         </div>
-                        <div class="game-name">게임 이름</div>
+                        <div class="game-name" onclick="showGameDetails('game2.jpg', '게임 이름', '게임 설명')">게임 이름</div>
                     </div>
                     <div class="game-wrapper">
-                        <div class="game">
+                        <div class="game" onclick="showGameDetails('game3.jpg', '게임 이름', '게임 설명')">
                             <img src="game3.jpg" alt="게임 추천 이미지 3">
                         </div>
-                        <div class="game-name">게임 이름</div>
+                        <div class="game-name" onclick="showGameDetails('game3.jpg', '게임 이름', '게임 설명')">게임 이름</div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="ranking" class="game-ranking" style="display:none;">
+            <h2>게임 순위</h2>
+            <div class="ranking-list" id="rankingList">
+                <!-- 게임 순위 리스트 -->
+            </div>
+            <div class="pagination">
+                <a href="#" onclick="showRankingPage(1)">&laquo;</a>
+                <a href="#" onclick="showRankingPage(1)">1</a>
+                <a href="#" onclick="showRankingPage(2)">2</a>
+                <a href="#" onclick="showRankingPage(3)">3</a>
+                <a href="#" onclick="showRankingPage(currentPage + 1)">&raquo;</a>
+            </div>
+        </div>
+        <div id="free-games" class="free-games" style="display:none;">
+            <h2>무료 게임</h2>
+            <div class="free-games-container">
+                <div class="categories">
+                    <div onclick="filterGames('FPS', 'free')">FPS</div>
+                    <div onclick="filterGames('RPG', 'free')">RPG</div>
+                    <div onclick="filterGames('스포츠', 'free')">스포츠</div>
+                    <div onclick="filterGames('AOS', 'free')">AOS</div>
+                    <div onclick="filterGames('시뮬레이션', 'free')">시뮬레이션</div>
+                    <div onclick="filterGames('액션', 'free')">액션</div>
+                    <div onclick="filterGames('전략', 'free')">전략</div>
+                    <div onclick="filterGames('공포', 'free')">공포</div>
+                </div>
+                <div class="game-list" id="freeGameList">
+                    <!-- 게임 리스트 -->
+                </div>
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+        <div id="paid-games" class="paid-games" style="display:none;">
+            <h2>유료 게임</h2>
+            <div class="paid-games-container">
+                <div class="categories">
+                    <div onclick="filterGames('FPS', 'paid')">FPS</div>
+                    <div onclick="filterGames('RPG', 'paid')">RPG</div>
+                    <div onclick="filterGames('스포츠', 'paid')">스포츠</div>
+                    <div onclick="filterGames('AOS', 'paid')">AOS</div>
+                    <div onclick="filterGames('시뮬레이션', 'paid')">시뮬레이션</div>
+                    <div onclick="filterGames('액션', 'paid')">액션</div>
+                    <div onclick="filterGames('전략', 'paid')">전략</div>
+                    <div onclick="filterGames('공포', 'paid')">공포</div>
+                </div>
+                <div class="game-list" id="paidGameList">
+                    <!-- 게임 리스트 -->
+                </div>
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+        <div id="game-details" class="game-details">
+            <img id="game-detail-img" src="" alt="게임 이미지">
+            <div id="game-detail-name" class="game-name"></div>
+            <div id="game-detail-description" class="game-description"></div>
         </div>
         <div class="sidebar">
             <div class="search-bar">
@@ -191,7 +344,7 @@
                 <br>
                 <label><input type="checkbox"> 로그인 상태 유지</label>
                 <br>
-                <a href="#">회원가입</a> | <a href="#">아이디/비번 찾기</a>
+                <a href="signup.html">회원가입</a> | <a href="#">아이디/비번 찾기</a>
             </div>
             <div class="search-terms">
                 <h2>실시간 검색어</h2>
@@ -203,7 +356,7 @@
     </div>
     <script>
         const keywords = [
-        "리그 오브 레전드",
+            "리그 오브 레전드",
             "오버워치2",
             "마인크래프트",
             "포트나이트",
@@ -212,9 +365,83 @@
             "Apex레전드",
             "배틀그라운드",
             "로블록스",
-            "FIFA",
-
+            "FIFA"
         ];
+
+        const rankings = [
+            ["리그오브레전드", "배틀그라운드", "발로란트", "FC 온라인", "메이플스토리", "서든어택", "오버워치2", "로스트아크", "스타크래프트 리마스터", "던전앤파이터"],
+            ["디아블로4", "이터널 리턴", "월드 오브 워크래프트", "리니지", "아이온", "디아블로2: 레저렉션", "리니지2", "사이퍼즈", "테일즈런너", "스타크래프트2"],
+            ["Counter-Strike 2", "워크래프트3 리포지드", "검은사막", "한게임 로우바둑이", "GTA 5", "카트라이더 드리프트", "마비노기", "블레이드 & 소울", "크레이지아케이드", "DOTA 2"]
+        ];
+
+        const games = {
+            "FPS": [
+                { name: "서든어택", img: "배틀그라운드.jpg", description: "배틀그라운드는 최대 100명의 이용자가 외딴 지역에 떨어진 각종 무기와 차량 등을 활용해 최후의 1인 혹은 1팀이 살아남을 때까지 생존 싸움을 벌이는 게임이다." },
+                { name: "서든어택", img: "new_game2.jpg", description: "게임 설명2" },
+                { name: "새로운 게임 이름3", img: "new_game3.jpg", description: "게임 설명3" },
+                { name: "새로운 게임 이름4", img: "new_game4.jpg", description: "게임 설명4" },
+                { name: "새로운 게임 이름5", img: "new_game5.jpg", description: "게임 설명5" },
+                { name: "새로운 게임 이름6", img: "new_game6.jpg", description: "게임 설명6" }
+            ],
+            "RPG": [
+                { name: "게임7", img: "game7.jpg", description: "게임 설명7" },
+                { name: "게임8", img: "game8.jpg", description: "게임 설명8" },
+                { name: "게임9", img: "game9.jpg", description: "게임 설명9" },
+                { name: "게임10", img: "game10.jpg", description: "게임 설명10" },
+                { name: "게임11", img: "game11.jpg", description: "게임 설명11" },
+                { name: "게임12", img: "game12.jpg", description: "게임 설명12" }
+            ],
+            "스포츠": [
+                { name: "게임13", img: "game13.jpg", description: "게임 설명13" },
+                { name: "게임14", img: "game14.jpg", description: "게임 설명14" },
+                { name: "게임15", img: "game15.jpg", description: "게임 설명15" },
+                { name: "게임16", img: "game16.jpg", description: "게임 설명16" },
+                { name: "게임17", img: "game17.jpg", description: "게임 설명17" },
+                { name: "게임18", img: "game18.jpg", description: "게임 설명18" }
+            ],
+            "AOS": [
+                { name: "게임19", img: "game19.jpg", description: "게임 설명19" },
+                { name: "게임20", img: "game20.jpg", description: "게임 설명20" },
+                { name: "게임21", img: "game21.jpg", description: "게임 설명21" },
+                { name: "게임22", img: "game22.jpg", description: "게임 설명22" },
+                { name: "게임23", img: "game23.jpg", description: "게임 설명23" },
+                { name: "게임24", img: "game24.jpg", description: "게임 설명24" }
+            ],
+            "시뮬레이션": [
+                { name: "게임25", img: "game25.jpg", description: "게임 설명25" },
+                { name: "게임26", img: "game26.jpg", description: "게임 설명26" },
+                { name: "게임27", img: "game27.jpg", description: "게임 설명27" },
+                { name: "게임28", img: "game28.jpg", description: "게임 설명28" },
+                { name: "게임29", img: "game29.jpg", description: "게임 설명29" },
+                { name: "게임30", img: "game30.jpg", description: "게임 설명30" }
+            ],
+            "액션": [
+                { name: "게임31", img: "game31.jpg", description: "게임 설명31" },
+                { name: "게임32", img: "game32.jpg", description: "게임 설명32" },
+                { name: "게임33", img: "game33.jpg", description: "게임 설명33" },
+                { name: "게임34", img: "game34.jpg", description: "게임 설명34" },
+                { name: "게임35", img: "game35.jpg", description: "게임 설명35" },
+                { name: "게임36", img: "game36.jpg", description: "게임 설명36" }
+            ],
+            "전략": [
+                { name: "게임37", img: "game37.jpg", description: "게임 설명37" },
+                { name: "게임38", img: "game38.jpg", description: "게임 설명38" },
+                { name: "게임39", img: "game39.jpg", description: "게임 설명39" },
+                { name: "게임40", img: "game40.jpg", description: "게임 설명40" },
+                { name: "게임41", img: "game41.jpg", description: "게임 설명41" },
+                { name: "게임42", img: "game42.jpg", description: "게임 설명42" }
+            ],
+            "공포": [
+                { name: "게임43", img: "game43.jpg", description: "게임 설명43" },
+                { name: "게임44", img: "game44.jpg", description: "게임 설명44" },
+                { name: "게임45", img: "game45.jpg", description: "게임 설명45" },
+                { name: "게임46", img: "game46.jpg", description: "게임 설명46" },
+                { name: "게임47", img: "game47.jpg", description: "게임 설명47" },
+                { name: "게임48", img: "game48.jpg", description: "게임 설명48" }
+            ]
+        };
+
+        let currentPage = 1;
 
         function displaySearchResults() {
             const resultsContainer = document.getElementById('searchResults');
@@ -225,6 +452,93 @@
                 resultsContainer.appendChild(keywordElement);
             });
         }
+
+        function showPage(page) {
+            const mainContent = document.getElementById('main');
+            const rankingContent = document.getElementById('ranking');
+            const freeGamesContent = document.getElementById('free-games');
+            const paidGamesContent = document.getElementById('paid-games');
+            const gameDetailsContent = document.getElementById('game-details');
+
+            mainContent.style.display = 'none';
+            rankingContent.style.display = 'none';
+            freeGamesContent.style.display = 'none';
+            paidGamesContent.style.display = 'none';
+            gameDetailsContent.style.display = 'none';
+
+            if (page === 'main') {
+                mainContent.style.display = 'block';
+            } else if (page === 'ranking') {
+                rankingContent.style.display = 'block';
+                showRankingPage(1);
+            } else if (page === 'free-games') {
+                freeGamesContent.style.display = 'block';
+            } else if (page === 'paid-games') {
+                paidGamesContent.style.display = 'block';
+            } else if (page === 'game-details') {
+                gameDetailsContent.style.display = 'flex';
+            }
+        }
+
+        function showRankingPage(pageNumber) {
+            const rankingList = document.getElementById('rankingList');
+            rankingList.innerHTML = '';
+
+            if (pageNumber < 1 || pageNumber > rankings.length) {
+                return;
+            }
+
+            currentPage = pageNumber;
+            const start = (pageNumber - 1) * 10;
+            const end = start + 10;
+            const games = rankings[pageNumber - 1];
+            games.forEach((game, index) => {
+                const rank = start + index + 1;
+                const gameItem = document.createElement('div');
+                gameItem.className = 'ranking-item';
+                gameItem.innerHTML = `<div>${rank}. ${game}</div>`;
+                rankingList.appendChild(gameItem);
+            });
+        }
+
+        function filterGames(category, type) {
+            const gameList = type === 'free' ? document.getElementById('freeGameList') : document.getElementById('paidGameList');
+            gameList.innerHTML = '';
+            const selectedGames = games[category] || [];
+            selectedGames.forEach(game => {
+                const gameItem = document.createElement('div');
+                gameItem.className = 'game-wrapper';
+                gameItem.innerHTML = `
+                    <div class="game" onclick="showGameDetails('${game.img}', '${game.name}', '${game.description}')">
+                        <img src="${game.img}" alt="${game.name}">
+                    </div>
+                    <div class="game-name" onclick="showGameDetails('${game.img}', '${game.name}', '${game.description}')">${game.name}</div>
+                `;
+                gameList.appendChild(gameItem);
+            });
+        }
+
+        function showGameDetails(img, name, description) {
+            document.getElementById('game-detail-img').src = img;
+            document.getElementById('game-detail-name').textContent = name;
+            document.getElementById('game-detail-description').textContent = description;
+            showPage('game-details');
+            history.pushState({ page: 'game-details' }, '', '');
+        }
+
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                showPage(event.state.page);
+            } else {
+                showPage('main');
+            }
+        });
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'main';
+            showPage(page);
+        };
 
         document.addEventListener('DOMContentLoaded', displaySearchResults);
     </script>
